@@ -1,0 +1,222 @@
+List jsonProjects = [
+  {
+    "name": "VPM System",
+    "description": "🚗 VPM System – Smart Parking & Driver Management\n\nThe VPM System is a complete solution for managing parking spaces, vehicles, and drivers with ease and efficiency. Whether you are an admin managing multiple parking spots or a driver looking for a seamless experience, the VPM System has you covered.\n\n✅ For Admins / Management:\n\nReal-time monitoring of available parking spaces\n\nManage vehicle entries, exits, and reservations\n\nTrack driver activity and vehicle history\n\nGenerate detailed reports for better decision-making\n\n👨‍✈️ For Drivers:\n\nEasily register and manage your vehicle details\n\nGet instant parking confirmations and availability updates\n\nNavigate directly to your assigned spot\n\nReceive notifications for entry, exit, or time limits\n\nWith a user-friendly interface and real-time updates, the VPM System improves parking operations, reduces waiting times, and ensures a smooth experience for both admins and drivers.",
+    "imageUrl": "assets/images/vpm.png",
+    "icon": "FontAwesomeIcons.gears",
+    "color": "#FF34C759",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Tallam",
+    "description": "📚 Tallam – Online Courses for Every Student\n\nTallam is an innovative learning platform that brings quality education right to your fingertips. With a wide range of online courses, students can learn anytime, anywhere, and at their own pace.\n\n✅ For Students:\n\nExplore a variety of courses across different subjects\n\nLearn through videos, interactive lessons, and assignments\n\nTrack progress and receive instant feedback\n\nConnect with teachers and peers through discussions and live sessions\n\n✅ For Educators:\n\nCreate and publish online courses easily\n\nShare resources, quizzes, and interactive content\n\nMonitor student engagement and performance in real time\n\nBuild a connected online classroom experience\n\nWith Tallam, education goes beyond the walls of a classroom — giving students the power to learn, grow, and achieve through online courses.\n\n🎓 Tallam – Learn Anywhere. Anytime.",
+    "imageUrl": "assets/images/tallam.png",
+    "icon": "FontAwesomeIcons.bookOpen",
+    "color": "#FF007AFF",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "MegaPlug",
+    "description": "⚡ MegaPlug – Smart EV Charging Made Easy\n\nMegaPlug is your complete solution for managing electric vehicle (EV) charging stations. Designed for both operators and drivers, it ensures a smooth, reliable, and intelligent charging experience.\n\n✅ Real-time monitoring of charging stations and connectors\n\n✅ Manage charging points, availability, and pricing\n\n✅ Track usage, revenue, and performance with detailed reports\n\n✅ Control access and support multiple payment methods\n\n✅ Locate the nearest available charging station instantly\n\n✅ Start, stop, and monitor charging sessions from the app\n\n✅ Check real-time charging progress and history\n\n✅ Get notifications when charging is complete or slots are free\n\nWith MegaPlug, EV charging is fast, transparent, and hassle-free.\n\nWhether you’re running a charging network or powering up your car, \n\nMegaPlug makes every connection simple.\n\n📲 MegaPlug – Powering the future of electric mobility.",
+    "imageUrl": "assets/images/megaplug.png",
+    "icon": "FontAwesomeIcons.bolt",
+    "color": "#FFFF9500",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firestore"],
+    "status": "Completed"
+  },
+  {
+    "name": "Bassant Academy",
+    "description": "🎓 Bassant Academy – Learn, Achieve, Succeed\n\nBassant Academy is a modern educational platform built to empower students with high-quality learning experiences. Whether you’re preparing for exams, enhancing your skills, or exploring new subjects, Bassant Academy provides the tools and guidance you need to excel.\n\n✅ For Students:\n\nAccess a wide range of structured courses and lessons\n\nLearn through videos, quizzes, and interactive exercises\n\nTrack your progress and achievements in real time\n\nStudy anytime, anywhere with flexible learning options\n\n✅ For Teachers / Trainers:\n\nCreate and manage courses with ease\n\nUpload lessons, assignments, and practice materials\n\nMonitor student performance and provide feedback\n\nEngage learners with live classes and interactive sessions\n\nWith Bassant Academy, education becomes personalized, engaging, and effective, helping every student reach their full potential.\n\n📚 Bassant Academy – Shaping Minds, Building Futures.",
+    "imageUrl": "assets/images/bassant.png",
+    "icon": "FontAwesomeIcons.graduationCap",
+    "color": "#FF8B5CF6",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Rassd ElTwajod",
+    "description": "👥 Rassd ElTwajod – Smart Attendance & Presence Tracking\n\nRassd ElTwajod is a digital platform designed to simplify attendance management for organizations, institutions, and teams. With real-time tracking and automated reports, it ensures accuracy, transparency, and efficiency in monitoring presence.\n\n✅ For Organizations / Management:\n\nTrack employee or student attendance instantly\n\nManage schedules, shifts, and working hours with ease\n\nGenerate detailed reports and insights\n\nReduce errors and save time with automated logging\n\n✅ For Employees / Students:\n\nQuick and simple check-in / check-out process\n\nView personal attendance history anytime\n\nReceive notifications and reminders\n\nStay connected with management for transparency\n\nWith Rassd ElTwajod, attendance is no longer a hassle — it’s a smart, reliable, and paperless solution that enhances productivity and trust.\n\n📲 Rassd ElTwajod – Because Every Presence Matters.",
+    "imageUrl": "assets/images/rassd.png",
+    "icon": "FontAwesomeIcons.userCheck",
+    "color": "#FF06B6D4",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "SQLite"],
+    "status": "Completed"
+  },
+  {
+    "name": "Theqqa Designers",
+    "description": "🎨 Theqqa Designers – Creative Solutions for Every Vision\n\nTheqqa Designers is a platform dedicated to delivering innovative, high-quality design services for individuals, businesses, and organizations. From branding to digital media, Theqqa Designers transform ideas into impactful visuals.\n\n✅ For Businesses / Brands:\n\nProfessional logo & brand identity design\n\nMarketing materials (flyers, brochures, posters)\n\nSocial media visuals tailored for engagement\n\nWebsite & app UI/UX design for a modern presence\n\n✅ For Individuals:\n\nPersonalized designs for events & occasions\n\nCreative digital artwork & illustrations\n\nCustom layouts for portfolios or personal branding\n\nWith a team of skilled designers and a client-first approach, Theqqa Designers combine creativity with functionality to deliver results that inspire.\n\n✨ Theqqa Designers – Where Ideas Become Designs.",
+    "imageUrl": "assets/images/theqqa.png",
+    "icon": "FontAwesomeIcons.palette",
+    "color": "#FFEF4444",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Souq El Medical",
+    "description": "🩺 Souq El Medical – Your Online Medical Marketplace\n\nSouq El Medical is a smart platform that connects healthcare providers, pharmacies, and individuals to a wide range of medical products and equipment. Whether you’re a doctor, clinic, or patient, Souq El Medical makes it easy to find trusted medical supplies with just a few taps.\n\n✅ For Healthcare Providers & Clinics:\n\nOrder medical tools, equipment, and consumables online\n\nAccess a wide catalog of trusted suppliers\n\nSave time with fast delivery and easy re-ordering\n\nTrack purchases and manage supply needs seamlessly\n\n✅ For Patients & Individuals:\n\nBuy personal medical devices and wellness products\n\nAccess pharmacy items and health essentials online\n\nCompare products and choose the best options\n\nEnjoy a safe, convenient shopping experience\n\nWith Souq El Medical, healthcare shopping becomes faster, easier, and more reliable — bringing quality medical products closer to everyone.\n\n🛒 Souq El Medical – Your Trusted Medical Marketplace.",
+    "imageUrl": "assets/images/souqmedical.png",
+    "icon": "FontAwesomeIcons.stethoscope",
+    "color": "#FF10B981",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Stripe", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Jaber Hospital",
+    "description": "🏥 Jaber Hospital – Advanced Healthcare at Your Fingertips\n\nJaber Hospital is a modern healthcare platform designed to connect patients with quality medical services, expert doctors, and advanced treatments. With a focus on accessibility and innovation, Jaber Hospital ensures a smooth and trusted healthcare journey for every patient.\n\n✅ For Patients:\n\nBook doctor appointments instantly\n\nAccess medical records and prescriptions securely\n\nReceive lab results and reports online\n\nGet reminders for visits, medications, and follow-ups\n\n✅ For Healthcare Providers:\n\nManage appointments and patient schedules efficiently\n\nAccess patient history and records in real time\n\nCommunicate securely with patients\n\nStreamline hospital workflows for better care\n\nWith state-of-the-art facilities and a digital-first approach, Jaber Hospital delivers personalized, efficient, and reliable healthcare services.\n\n💙 Jaber Hospital – Caring for You, Every Step of the Way.",
+    "imageUrl": "assets/images/jaber.png",
+    "icon": "FontAwesomeIcons.hospital",
+    "color": "#FFDC2626",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "House Menu",
+    "description": "🍴 House Menu – Your Digital Menu Experience\n\nHouse Menu is a smart platform that brings restaurants, cafés, and customers together through an interactive digital menu system. It makes ordering faster, easier, and more enjoyable for both businesses and diners.\n\n✅ For Restaurants & Cafés:\n\nCreate and manage a digital menu with images & details\n\nUpdate prices, items, and offers instantly\n\nReduce printing costs with a fully digital solution\n\nImprove customer experience with a modern touch\n\n✅ For Customers:\n\nBrowse menus anytime from your phone\n\nView detailed descriptions, photos, and prices\n\nDiscover offers and special recommendations\n\nEnjoy a seamless and contactless ordering experience\n\nWith House Menu, dining becomes smarter, simpler, and more engaging — whether at home or in-house.\n\n📲 House Menu – The Future of Ordering is Here.",
+    "imageUrl": "assets/images/housemenu.png",
+    "icon": "FontAwesomeIcons.utensils",
+    "color": "#FFFF5722",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase", "Stripe"],
+    "status": "Completed"
+  },
+  {
+    "name": "Gram Dahab",
+    "description": "💰 Gram Dahab – Smart Gold Trading Made Simple\n\nGram Dahab is a secure and modern platform that allows users to buy, sell, and trade gold with ease. Whether you’re an investor, a trader, or someone looking to save in gold, Gram Dahab makes the process transparent, reliable, and accessible.\n\n✅ For Investors & Traders:\n\nBuy and sell gold instantly at live market prices\n\nTrack gold rates in real time\n\nManage your portfolio with detailed insights\n\nEnjoy safe and secure transactions\n\n✅ For Everyday Users:\n\nSave in gold, starting with small amounts (grams)\n\nConvert savings into physical gold when needed\n\nGet instant notifications on price changes\n\nTrade anytime, anywhere from your device\n\nWith Gram Dahab, gold is no longer just a luxury — it’s an investment for everyone.\n\n✨ Gram Dahab – Your Trusted Partner in Gold Trading.",
+    "imageUrl": "assets/images/gramdahab.png",
+    "icon": "FontAwesomeIcons.gem",
+    "color": "#FFF59E0B",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "AlQamzi",
+    "description": "📊 AlQamzi CRM – Smart Customer Relationship Management\n\nAlQamzi CRM App is a powerful tool designed to help businesses manage customers, sales, and operations all in one place. With an easy-to-use interface and real-time data, it empowers teams to build stronger relationships and drive growth.\n\n✅ For Businesses & Teams:\n\nManage leads, clients, and contacts efficiently\n\nTrack sales pipelines and monitor progress\n\nSchedule meetings, calls, and follow-ups\n\nGenerate detailed reports and analytics for better decisions\n\n✅ For Sales & Field Teams:\n\nAccess client data anytime, anywhere\n\nLog interactions and update records instantly\n\nGet reminders for tasks, deadlines, and follow-ups\n\nWork smarter with mobile-first CRM features\n\nWith AlQamzi CRM, managing customer relationships becomes faster, smarter, and more effective — giving businesses the edge they need to succeed.\n\n📲 AlQamzi CRM – Simplifying Business, Strengthening Relationships.",
+    "imageUrl": "assets/images/alqamzi.png",
+    "icon": "FontAwesomeIcons.building",
+    "color": "#FF3B82F6",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter"],
+    "status": "Completed"
+  },
+  {
+    "name": "WaterWay",
+    "description": "💧 WaterWay CRM – Smarter Customer & Sales Management\n\nWaterWay CRM App is a complete solution for managing customers, sales, and operations in one unified platform. Designed with simplicity and efficiency in mind, it helps businesses build stronger client relationships and streamline workflows.\n\n✅ For Businesses & Management:\n\nOrganize leads, clients, and accounts with ease\n\nMonitor sales pipelines and deal progress in real time\n\nAutomate tasks, reminders, and follow-ups\n\nGenerate detailed reports for smarter decision-making\n\n✅ For Sales & Field Teams:\n\nAccess customer data anytime, anywhere\n\nLog visits, calls, and interactions instantly\n\nGet instant notifications for tasks and deadlines\n\nWork seamlessly on the go with mobile-first tools\n\nWith WaterWay CRM, you’ll save time, improve productivity, and deliver better customer experiences.\n\n📲 WaterWay CRM – Flowing Towards Stronger Relationships.",
+    "imageUrl": "assets/images/waterway.png",
+    "icon": "FontAwesomeIcons.water",
+    "color": "#FF06B6D4",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Sokia",
+    "description": "🤲 Sokia – Give with Ease, Support with Heart\n\nSokia is a dedicated charity app that makes it simple and secure to donate to mosques and charitable causes. With just a few taps, you can contribute to the maintenance of mosques, community services, and ongoing projects that matter most.\n\n✅ For Donors:\n\nDonate instantly and securely through the app\n\nSupport mosque construction, renovation, and services\n\nTrack your donations and contribution history\n\nChoose recurring or one-time donations with flexibility\n\n✅ For Mosques & Charities:\n\nReceive donations directly and transparently\n\nShare updates, campaigns, and community needs\n\nBuild trust with real-time reporting and receipts\n\nConnect with a wider base of generous supporters\n\nWith Sokia, giving is no longer complicated — it’s accessible, transparent, and impactful, ensuring your donation reaches where it matters most.\n\n🌙 Sokia – A Bridge Between You and Good Deeds.",
+    "imageUrl": "assets/images/sokia.png",
+    "icon": "FontAwesomeIcons.handsHelping",
+    "color": "#FF9333EA",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "KoraGoal",
+    "description": "⚽ KoraGoal – All Your Football News in One Place\n\nKoraGoal is the ultimate sports content app for football fans, bringing you the latest news, live scores, match updates, and exclusive content right at your fingertips. Stay connected to your favorite teams, leagues, and players anytime, anywhere.\n\n✅ For Fans:\n\nFollow live scores and real-time match commentary\n\nGet instant notifications for goals, cards, and results\n\nRead the latest sports news, articles, and analyses\n\nWatch highlights, interviews, and exclusive videos\n\nCustomize your feed with your favorite clubs and leagues\n\nWhether it’s the Champions League, local leagues, or international tournaments, KoraGoal keeps you ahead of the game with fast, reliable, and engaging content.\n\n📲 KoraGoal – Where Football Lives.",
+    "imageUrl": "assets/images/koragoal.png",
+    "icon": "FontAwesomeIcons.futbol",
+    "color": "#FF16A34A",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "API Integration"],
+    "status": "Completed"
+  },
+  {
+    "name": "Molk",
+    "description": "🛍️ Molk – Shopping Made Simple for Men, Women & Kids\n\nMolk is your one-stop e-commerce app designed to make shopping effortless for the whole family. From fashion to essentials, Molk brings together a wide range of products for men, women, and kids — all in one convenient place.\n\n✅ For Shoppers:\n\nExplore the latest fashion trends and daily essentials\n\nShop clothing, accessories, and lifestyle products for all ages\n\nEnjoy exclusive offers, discounts, and seasonal collections\n\nTrack orders, manage returns, and shop with confidence\n\n✅ Why Molk?\n\nUser-friendly design for smooth browsing\n\nSecure payments and fast delivery\n\nVerified sellers and trusted quality\n\nA complete shopping experience for every family member\n\nWith Molk, shopping becomes faster, smarter, and more enjoyable — anytime, anywhere.\n\n📲 Molk – Style & Convenience for Everyone.",
+    "imageUrl": "assets/images/molk.png",
+    "icon": "FontAwesomeIcons.cheese",
+    "color": "#FFEAB308",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "HostN",
+    "description": "🌐 HostN – Smart Hosting & Property Management\n\nHostN is a powerful platform designed to simplify property hosting, bookings, and guest management. Whether you’re renting out a single unit or managing multiple properties, HostN gives you the tools to stay organized and maximize your earnings.\n\n✅ For Hosts & Property Owners:\n\nList properties with photos, details, and pricing\n\nManage bookings, availability, and cancellations in real time\n\nTrack earnings and generate performance reports\n\nCommunicate directly with guests through the app\n\n✅ For Guests:\n\nDiscover and book stays quickly and securely\n\nBrowse property details, amenities, and reviews\n\nReceive instant booking confirmations\n\nEnjoy smooth check-in and stay experiences\n\nWith HostN, hosting and booking become seamless, transparent, and stress-free — bringing comfort to guests and efficiency to hosts.\n\n🏡 HostN – Where Stays Feel Like Home.",
+    "imageUrl": "assets/images/hostn.png",
+    "icon": "FontAwesomeIcons.server",
+    "color": "#FF64748B",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Q8Music",
+    "description": "🎵 Q8Music – Your Ultimate Music Experience\n\nQ8Music is a versatile music player that not only lets you listen to your favorite songs but also stream music locally via its built-in server. Enjoy high-quality playback, smart organization, and seamless sharing across devices.\n\n✅ For Music Lovers:\n\nPlay music from your device with an intuitive, easy-to-use player\n\nCreate playlists, shuffle, and repeat your favorite tracks\n\nBrowse by albums, artists, or genres\n\nEnjoy high-quality audio playback\n\n✅ Local Server Feature:\n\nStream your music library to other devices on the same network\n\nAccess your songs from multiple devices without cloud storage\n\nShare playlists and tracks with family or friends easily\n\nWith Q8Music, your music is always accessible, organized, and ready to play, whether locally or across devices.\n\n📲 Q8Music – Listen, Stream, Share.",
+    "imageUrl": "assets/images/q8music.png",
+    "icon": "FontAwesomeIcons.music",
+    "color": "#FF22C55E",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Audio Players"],
+    "status": "Completed"
+  },
+  {
+    "name": "Cezma",
+    "description": "🛒 Cezma – Shop & Sell in One Place\n\nCezma is a dynamic multi-vendor e-commerce platform that connects buyers and sellers seamlessly. From fashion and electronics to lifestyle products, Cezma makes online shopping and selling easy, secure, and efficient.\n\n✅ For Buyers:\n\nBrowse a wide range of products from multiple sellers\n\nCompare prices, read reviews, and make informed choices\n\nEnjoy secure payments and fast delivery\n\nTrack orders and manage returns easily\n\n✅ For Sellers / Vendors:\n\nList products quickly with images, descriptions, and pricing\n\nManage inventory, orders, and deliveries from one platform\n\nReach a wider audience and increase sales\n\nAccess analytics to optimize your store performance\n\nWith Cezma, shopping becomes more diverse, convenient, and reliable, while sellers get a powerful platform to grow their business.\n\n📲 Cezma – Where Buyers Meet Sellers.",
+    "imageUrl": "assets/images/cezma.png",
+    "icon": "FontAwesomeIcons.house",
+    "color": "#FF2563EB",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  },
+  {
+    "name": "Color Box",
+    "description": "📺 Color Box – VOD & Live Streaming on Android TV\n\nColor Box brings all your favorite video-on-demand (VOD) and live TV content directly to your Android TV. Enjoy movies, series, and live channels with a smooth, intuitive interface designed for the big screen.\n\n✅ For Viewers:\n\nAccess a wide range of movies, TV shows, and live channels\n\nStream content in high-quality with minimal buffering\n\nBrowse categories, search easily, and create watchlists\n\nEnjoy a seamless, TV-optimized interface for home viewing\n\n✅ Features:\n\nSupport for both VOD and live streaming\n\nUser-friendly navigation designed for Android TV\n\nPersonalized recommendations based on your viewing habits\n\nRegular updates with fresh content\n\nWith Color Box, entertainment is simple, convenient, and always on your screen — perfect for family movie nights or catching live events.\n\n📺 Color Box – Your World of Entertainment on Android TV.",
+    "imageUrl": "assets/images/colorbox.png",
+    "icon": "FontAwesomeIcons.box",
+    "color": "#FF9333EA",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter"],
+    "status": "Completed"
+  },
+  {
+    "name": "Spider",
+    "description": "🕷️ Spider – Ultimate Entertainment on Android TV\n\nSpider is a versatile Android TV app that brings a wide range of video-on-demand (VOD) and live streaming content directly to your big screen. Enjoy movies, series, and live channels with smooth playback and an intuitive interface.\n\n✅ For Viewers:\n\nStream movies, TV shows, and live channels in high quality\n\nBrowse content by categories or search your favorite titles\n\nCreate watchlists and follow trending content\n\nTV-optimized interface for seamless navigation\n\n✅ Features:\n\nSupport for VOD and live streaming\n\nPersonalized recommendations based on your viewing habits\n\nRegular content updates to keep your library fresh\n\nEasy-to-use Android TV interface for the best home entertainment\n\nWith Spider, your Android TV becomes a complete entertainment hub — all your favorite content in one place.\n\n📺 Spider – Stream. Watch. Enjoy.",
+    "imageUrl": "assets/images/spider.png",
+    "icon": "FontAwesomeIcons.spider",
+    "color": "#FFEF4444",
+    "githubUrl": "",
+    "liveUrl": "",
+    "techStack": ["Flutter", "Firebase"],
+    "status": "Completed"
+  }
+];
