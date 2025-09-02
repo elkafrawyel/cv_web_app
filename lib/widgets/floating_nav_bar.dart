@@ -8,6 +8,8 @@ class FloatingNavBar extends StatefulWidget {
   final bool showNavBar;
   final GlobalKey aboutKey;
   final GlobalKey skillsKey;
+  final GlobalKey workExperienceKey;
+  final GlobalKey educationKey;
   final GlobalKey projectsKey;
   final GlobalKey contactKey;
 
@@ -16,6 +18,8 @@ class FloatingNavBar extends StatefulWidget {
     required this.showNavBar,
     required this.aboutKey,
     required this.skillsKey,
+    required this.workExperienceKey,
+    required this.educationKey,
     required this.projectsKey,
     required this.contactKey,
   });
@@ -96,11 +100,13 @@ class _FloatingNavBarState extends State<FloatingNavBar> with TickerProviderStat
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _CompactNavItem(icon: Icons.person, title: 'About', onTap: () => _scrollToSection(widget.aboutKey)),
-                                _CompactNavItem(icon: Icons.code, title: 'Skills', onTap: () => _scrollToSection(widget.skillsKey)),
-                                _CompactNavItem(icon: Icons.work, title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
-                                _CompactNavItem(icon: Icons.email, title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
-                                _ThemeToggleButton(isCompact: true),
+                              _CompactNavItem(icon: Icons.person, title: 'About', onTap: () => _scrollToSection(widget.aboutKey)),
+                              _CompactNavItem(icon: Icons.code, title: 'Skills', onTap: () => _scrollToSection(widget.skillsKey)),
+                              _CompactNavItem(icon: Icons.business_center, title: 'Experience', onTap: () => _scrollToSection(widget.workExperienceKey)),
+                              _CompactNavItem(icon: Icons.school, title: 'Education', onTap: () => _scrollToSection(widget.educationKey)),
+                              _CompactNavItem(icon: Icons.work, title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
+                              _CompactNavItem(icon: Icons.email, title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
+                              _ThemeToggleButton(isCompact: true),
                               ],
                             ),
                           );
@@ -111,6 +117,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> with TickerProviderStat
                             children: [
                               _CompactNavItem(icon: Icons.person, title: 'About', onTap: () => _scrollToSection(widget.aboutKey)),
                               _CompactNavItem(icon: Icons.code, title: 'Skills', onTap: () => _scrollToSection(widget.skillsKey)),
+                              _CompactNavItem(icon: Icons.business_center, title: 'Experience', onTap: () => _scrollToSection(widget.workExperienceKey)),
+                              _CompactNavItem(icon: Icons.school, title: 'Education', onTap: () => _scrollToSection(widget.educationKey)),
                               _CompactNavItem(icon: Icons.work, title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
                               _CompactNavItem(icon: Icons.email, title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
                               _ThemeToggleButton(isCompact: true),
@@ -124,6 +132,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> with TickerProviderStat
                           children: [
                             _EnhancedNavItem(title: 'About', onTap: () => _scrollToSection(widget.aboutKey)),
                             _EnhancedNavItem(title: 'Skills', onTap: () => _scrollToSection(widget.skillsKey)),
+                            _EnhancedNavItem(title: 'Experience', onTap: () => _scrollToSection(widget.workExperienceKey)),
+                            _EnhancedNavItem(title: 'Education', onTap: () => _scrollToSection(widget.educationKey)),
                             _EnhancedNavItem(title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
                             _EnhancedNavItem(title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
                             _ThemeToggleButton(),
