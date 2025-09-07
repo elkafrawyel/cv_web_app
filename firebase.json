@@ -1,13 +1,1 @@
-{
-  "hosting": {
-    "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": {
-      "region": "us-central1"
-    }
-  }
-}
+{"hosting":{"source":".","ignore":["firebase.json","**/.*","**/node_modules/**"],"frameworksBackend":{"region":"us-central1"}},"flutter":{"platforms":{"android":{"default":{"projectId":"m-elkafrawy","appId":"1:501196314988:android:ccb712534ca747d4bfbb49","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"m-elkafrawy","appId":"1:501196314988:ios:a55de217e88f2992bfbb49","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"m-elkafrawy","configurations":{"android":"1:501196314988:android:ccb712534ca747d4bfbb49","ios":"1:501196314988:ios:a55de217e88f2992bfbb49"}}}}}}
