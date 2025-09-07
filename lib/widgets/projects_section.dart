@@ -10,7 +10,11 @@ class ProjectsSection extends StatefulWidget {
   final GlobalKey sectionKey;
   final Animation<double> projectsAnimation;
 
-  const ProjectsSection({super.key, required this.sectionKey, required this.projectsAnimation});
+  const ProjectsSection({
+    super.key,
+    required this.sectionKey,
+    required this.projectsAnimation,
+  });
 
   @override
   State<ProjectsSection> createState() => _ProjectsSectionState();
@@ -19,7 +23,9 @@ class ProjectsSection extends StatefulWidget {
 class _ProjectsSectionState extends State<ProjectsSection> {
   int _displayedProjects = 6; // Start with 6 projects
 
-  List<Project> projects = jsonProjects.map((element) => Project.fromJson(element)).toList();
+  List<Project> projects = jsonProjects
+      .map((element) => Project.fromJson(element))
+      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +54,23 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               const SizedBox(height: 16),
               Text(
                 'Some of the projects I\'ve worked on recently',
-                style: GoogleFonts.inter(fontSize: MediaQuery.of(context).size.width > 768 ? 18 : 16, color: const Color(0xFF6B7280)),
+                style: GoogleFonts.inter(
+                  fontSize: MediaQuery.of(context).size.width > 768 ? 18 : 16,
+                  color: const Color(0xFF6B7280),
+                ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: MediaQuery.of(context).size.width > 768 ? 60 : 40),
+              SizedBox(
+                height: MediaQuery.of(context).size.width > 768 ? 60 : 40,
+              ),
 
               FadeTransition(
                 opacity: widget.projectsAnimation,
                 child: SlideTransition(
-                  position: Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(widget.projectsAnimation),
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.3),
+                    end: Offset.zero,
+                  ).animate(widget.projectsAnimation),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       final screenWidth = MediaQuery.of(context).size.width;
@@ -70,23 +84,33 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                       return Wrap(
                         spacing: screenWidth > 768 ? 30 : 20,
                         runSpacing: screenWidth > 768 ? 30 : 20,
-                        children: List.generate(_displayedProjects.clamp(0, projects.length), (index) {
-                          final cardWidth = crossAxisCount == 1
-                              ? constraints.maxWidth
-                              : (constraints.maxWidth - ((crossAxisCount - 1) * (screenWidth > 768 ? 30 : 20))) / crossAxisCount;
+                        children: List.generate(
+                          _displayedProjects.clamp(0, projects.length),
+                          (index) {
+                            final cardWidth = crossAxisCount == 1
+                                ? constraints.maxWidth
+                                : (constraints.maxWidth -
+                                          ((crossAxisCount - 1) *
+                                              (screenWidth > 768 ? 30 : 20))) /
+                                      crossAxisCount;
 
-                          return Container(
-                            width: cardWidth,
-                            child: RepaintBoundary(
-                              child: AnimationConfiguration.staggeredGrid(
-                                position: index,
-                                duration: const Duration(milliseconds: 400),
-                                columnCount: crossAxisCount,
-                                child: FadeInAnimation(child: ProjectCard(project: projects[index])),
+                            return Container(
+                              width: cardWidth,
+                              child: RepaintBoundary(
+                                child: AnimationConfiguration.staggeredGrid(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 400),
+                                  columnCount: crossAxisCount,
+                                  child: FadeInAnimation(
+                                    child: ProjectCard(
+                                      project: projects[index],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
@@ -100,19 +124,30 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _displayedProjects = (_displayedProjects + 6).clamp(0, projects.length);
+                        _displayedProjects = (_displayedProjects + 6).clamp(
+                          0,
+                          projects.length,
+                        );
                       });
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF6366F1),
                       foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       elevation: 0,
                     ),
                     child: Text(
                       'Show More Projects (${projects.length - _displayedProjects} remaining)',
-                      style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600),
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
@@ -146,8 +181,10 @@ class _ProjectCardState extends State<ProjectCard> {
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150), // Reduced duration for snappier feel
-          transform: Matrix4.identity()..scale(_isHovered ? 1.01 : 1.0), // Reduced scale for better performance
+          duration: const Duration(milliseconds: 150),
+          // Reduced duration for snappier feel
+          transform: Matrix4.identity()..scale(_isHovered ? 1.01 : 1.0),
+          // Reduced scale for better performance
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -172,19 +209,33 @@ class _ProjectCardState extends State<ProjectCard> {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [widget.project.color.withOpacity(0.1), widget.project.color.withOpacity(0.05)],
+                    colors: [
+                      widget.project.color.withOpacity(0.1),
+                      widget.project.color.withOpacity(0.05),
+                    ],
                   ),
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
                 ),
                 child: Center(
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width > 768 ? 20 : 16),
+                    padding: EdgeInsets.all(
+                      MediaQuery.of(context).size.width > 768 ? 20 : 16,
+                    ),
                     decoration: BoxDecoration(
-                      color: widget.project.color.withOpacity(_isHovered ? 0.2 : 0.1),
+                      color: widget.project.color.withOpacity(
+                        _isHovered ? 0.2 : 0.1,
+                      ),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: FaIcon(widget.project.icon, size: MediaQuery.of(context).size.width > 768 ? 40 : 32, color: widget.project.color),
+                    child: FaIcon(
+                      widget.project.icon,
+                      size: MediaQuery.of(context).size.width > 768 ? 40 : 32,
+                      color: widget.project.color,
+                    ),
                   ),
                 ),
               ),
@@ -192,7 +243,9 @@ class _ProjectCardState extends State<ProjectCard> {
               // Project details
               Flexible(
                 child: Container(
-                  padding: EdgeInsets.all(MediaQuery.of(context).size.width > 768 ? 24 : 20),
+                  padding: EdgeInsets.all(
+                    MediaQuery.of(context).size.width > 768 ? 24 : 20,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -205,7 +258,10 @@ class _ProjectCardState extends State<ProjectCard> {
                             child: Text(
                               widget.project.name,
                               style: GoogleFonts.inter(
-                                fontSize: MediaQuery.of(context).size.width > 768 ? 20 : 18,
+                                fontSize:
+                                    MediaQuery.of(context).size.width > 768
+                                    ? 20
+                                    : 18,
                                 fontWeight: FontWeight.w600,
                                 color: const Color(0xFF1F2937),
                                 height: 1.2,
@@ -216,12 +272,19 @@ class _ProjectCardState extends State<ProjectCard> {
                           ),
                           const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
-                              color: widget.project.status == 'Completed' ? Colors.green.withOpacity(0.1) : Colors.orange.withOpacity(0.1),
+                              color: widget.project.status == 'Completed'
+                                  ? Colors.green.withOpacity(0.1)
+                                  : Colors.orange.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: widget.project.status == 'Completed' ? Colors.green.withOpacity(0.3) : Colors.orange.withOpacity(0.3),
+                                color: widget.project.status == 'Completed'
+                                    ? Colors.green.withOpacity(0.3)
+                                    : Colors.orange.withOpacity(0.3),
                               ),
                             ),
                             child: Text(
@@ -229,49 +292,88 @@ class _ProjectCardState extends State<ProjectCard> {
                               style: GoogleFonts.inter(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600,
-                                color: widget.project.status == 'Completed' ? Colors.green[700] : Colors.orange[700],
+                                color: widget.project.status == 'Completed'
+                                    ? Colors.green[700]
+                                    : Colors.orange[700],
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.width > 768 ? 12 : 10),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width > 768
+                            ? 12
+                            : 10,
+                      ),
 
                       // Description with Show More/Less functionality
                       _buildDescription(),
-                      SizedBox(height: MediaQuery.of(context).size.width > 768 ? 16 : 12),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width > 768
+                            ? 16
+                            : 12,
+                      ),
 
                       // Tech stack
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Tech Stack',
-                          style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF374151)),
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF374151),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),
 
                       // Tech stack badges with proper overflow handling
                       ConstrainedBox(
-                        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.width > 768 ? 80 : 60),
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.width > 768
+                              ? 80
+                              : 60,
+                        ),
                         child: SingleChildScrollView(
                           child: Wrap(
                             spacing: 6,
                             runSpacing: 6,
                             children: widget.project.techStack
-                                .take(MediaQuery.of(context).size.width > 768 ? 8 : 6) // Limit tech stack items
+                                .take(
+                                  MediaQuery.of(context).size.width > 768
+                                      ? 8
+                                      : 6,
+                                ) // Limit tech stack items
                                 .map(
                                   (tech) => Container(
-                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width > 768 ? 8 : 6, vertical: 4),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          MediaQuery.of(context).size.width >
+                                              768
+                                          ? 8
+                                          : 6,
+                                      vertical: 4,
+                                    ),
                                     decoration: BoxDecoration(
-                                      color: widget.project.color.withOpacity(0.1),
+                                      color: widget.project.color.withOpacity(
+                                        0.1,
+                                      ),
                                       borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: widget.project.color.withOpacity(0.2)),
+                                      border: Border.all(
+                                        color: widget.project.color.withOpacity(
+                                          0.2,
+                                        ),
+                                      ),
                                     ),
                                     child: Text(
                                       tech,
                                       style: GoogleFonts.inter(
-                                        fontSize: MediaQuery.of(context).size.width > 768 ? 10 : 9,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width >
+                                                768
+                                            ? 10
+                                            : 9,
                                         fontWeight: FontWeight.w500,
                                         color: widget.project.color,
                                       ),
@@ -289,34 +391,98 @@ class _ProjectCardState extends State<ProjectCard> {
                         padding: const EdgeInsets.symmetric(vertical: 20.0),
                         child: Row(
                           children: [
-                            if (widget.project.liveUrl?.isNotEmpty ?? false)
+                            if (widget.project.androidLiveUrl?.isNotEmpty ??
+                                false)
                               Expanded(
                                 child: ElevatedButton.icon(
-                                  onPressed: () => _launchURL(widget.project.liveUrl!),
-                                  icon: const FaIcon(FontAwesomeIcons.globe, size: 14),
-                                  label: Text('Live Demo', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
+                                  onPressed: () => _launchURL(
+                                    widget.project.androidLiveUrl!,
+                                  ),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.android,
+                                    size: 14,
+                                  ),
+                                  label: Text(
+                                    'Android',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: widget.project.color,
+                                    backgroundColor: Colors.green.shade600,
                                     foregroundColor: Colors.white,
                                     elevation: 0,
-                                    padding: const EdgeInsets.symmetric(vertical: 10),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                 ),
                               ),
-                            if ((widget.project.liveUrl?.isNotEmpty ?? false) && (widget.project.githubUrl?.isNotEmpty ?? false))
+                            const SizedBox(width: 10),
+                            // iOS Button
+                            if (widget.project.iosLiveUrl?.isNotEmpty ?? false)
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: () =>
+                                      _launchURL(widget.project.iosLiveUrl!),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.appStoreIos,
+                                    size: 14,
+                                  ),
+                                  label: Text(
+                                    'iOS',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey.shade700,
+                                    foregroundColor: Colors.white,
+                                    elevation: 0,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               const SizedBox(width: 8),
                             if (widget.project.githubUrl?.isNotEmpty ?? false)
                               Expanded(
                                 child: OutlinedButton.icon(
-                                  onPressed: () => _launchURL(widget.project.githubUrl!),
-                                  icon: const FaIcon(FontAwesomeIcons.github, size: 14),
-                                  label: Text('GitHub', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
+                                  onPressed: () =>
+                                      _launchURL(widget.project.githubUrl!),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.github,
+                                    size: 14,
+                                  ),
+                                  label: Text(
+                                    'GitHub',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                   style: OutlinedButton.styleFrom(
                                     foregroundColor: widget.project.color,
-                                    side: BorderSide(color: widget.project.color.withOpacity(0.3)),
-                                    padding: const EdgeInsets.symmetric(vertical: 10),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                    side: BorderSide(
+                                      color: widget.project.color.withOpacity(
+                                        0.3,
+                                      ),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -344,7 +510,11 @@ class _ProjectCardState extends State<ProjectCard> {
         final textPainter = TextPainter(
           text: TextSpan(
             text: description,
-            style: GoogleFonts.inter(fontSize: MediaQuery.of(context).size.width > 768 ? 14 : 13, color: const Color(0xFF6B7280), height: 1.5),
+            style: GoogleFonts.inter(
+              fontSize: MediaQuery.of(context).size.width > 768 ? 14 : 13,
+              color: const Color(0xFF6B7280),
+              height: 1.5,
+            ),
           ),
           maxLines: maxLines,
           textDirection: TextDirection.ltr,
@@ -361,9 +531,15 @@ class _ProjectCardState extends State<ProjectCard> {
               curve: Curves.easeInOut,
               child: Text(
                 description,
-                style: GoogleFonts.inter(fontSize: MediaQuery.of(context).size.width > 768 ? 14 : 13, color: const Color(0xFF6B7280), height: 1.5),
+                style: GoogleFonts.inter(
+                  fontSize: MediaQuery.of(context).size.width > 768 ? 14 : 13,
+                  color: const Color(0xFF6B7280),
+                  height: 1.5,
+                ),
                 maxLines: _isExpanded ? null : maxLines,
-                overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                overflow: _isExpanded
+                    ? TextOverflow.visible
+                    : TextOverflow.ellipsis,
               ),
             ),
 
@@ -381,13 +557,21 @@ class _ProjectCardState extends State<ProjectCard> {
                   children: [
                     Text(
                       _isExpanded ? 'Show Less' : 'Show More',
-                      style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: widget.project.color),
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: widget.project.color,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     AnimatedRotation(
                       turns: _isExpanded ? 0.5 : 0.0,
                       duration: const Duration(milliseconds: 200),
-                      child: Icon(Icons.keyboard_arrow_down, size: 16, color: widget.project.color),
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 16,
+                        color: widget.project.color,
+                      ),
                     ),
                   ],
                 ),

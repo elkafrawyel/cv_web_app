@@ -8,7 +8,8 @@ class Project {
   final IconData icon;
   final Color color;
   final String? githubUrl;
-  final String? liveUrl;
+  final String? androidLiveUrl;
+  final String? iosLiveUrl;
   final List<String> techStack;
   final String status;
 
@@ -19,7 +20,8 @@ class Project {
     required this.icon,
     required this.color,
     this.githubUrl,
-    this.liveUrl,
+    this.androidLiveUrl,
+    this.iosLiveUrl,
     required this.techStack,
     required this.status,
   });
@@ -33,7 +35,8 @@ class Project {
       icon: _parseIconData(json['icon'] as String),
       color: _parseColor(json['color'] as String),
       githubUrl: json['githubUrl'] as String,
-      liveUrl: json['liveUrl'] as String,
+      androidLiveUrl: json['androidLiveUrl'] as String,
+      iosLiveUrl: json['iosLiveUrl'] as String?,
       techStack: List<String>.from(json['techStack'] as List),
       status: json['status'] as String,
     );

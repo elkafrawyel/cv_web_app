@@ -1,0 +1,20 @@
+dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  image_path_android: "assets/images/launcher/android_icon.png"
+  image_path_ios: "assets/images/launcher/ios_icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+  web:
+    generate: true
+    image_path: "assets/images/launcher/icon.png"
+    background_color: "#FFFFFF" # background color for web icon, default white
+    theme_color: "#8200D6"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true # remove alpha channel
+
+
+
+# to run this package run the following command
+# dart run flutter_launcher_icons

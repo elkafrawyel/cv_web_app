@@ -1,11 +1,11 @@
 {
-    "name": "Mahmoud Ashraf CV",
-    "short_name": "Mahmoud Ashraf CV",
+    "name": "Mahmoud ElKafrawy CV",
+    "short_name": "Mahmoud ElKafrawy CV",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Mahmoud Ashraf's CV Web Application",
+    "background_color": "#FFFFFF",
+    "theme_color": "#8200D6",
+    "description": "Mahmoud ElKafrawy's CV Web Application",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
