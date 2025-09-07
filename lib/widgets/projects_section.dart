@@ -394,10 +394,9 @@ class _ProjectCardState extends State<ProjectCard> {
                             if (widget.project.androidLiveUrl?.isNotEmpty ??
                                 false)
                               Expanded(
-                                child: ElevatedButton.icon(
-                                  onPressed: () => _launchURL(
-                                    widget.project.androidLiveUrl!,
-                                  ),
+                                child: OutlinedButton.icon(
+                                  onPressed: () =>
+                                      _launchURL(widget.project.androidLiveUrl!),
                                   icon: const FaIcon(
                                     FontAwesomeIcons.android,
                                     size: 14,
@@ -409,10 +408,13 @@ class _ProjectCardState extends State<ProjectCard> {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green.shade600,
-                                    foregroundColor: Colors.white,
-                                    elevation: 0,
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: widget.project.color,
+                                    side: BorderSide(
+                                      color: widget.project.color.withOpacity(
+                                        0.3,
+                                      ),
+                                    ),
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 10,
                                     ),
@@ -426,24 +428,27 @@ class _ProjectCardState extends State<ProjectCard> {
                             // iOS Button
                             if (widget.project.iosLiveUrl?.isNotEmpty ?? false)
                               Expanded(
-                                child: ElevatedButton.icon(
+                                child: OutlinedButton.icon(
                                   onPressed: () =>
                                       _launchURL(widget.project.iosLiveUrl!),
                                   icon: const FaIcon(
-                                    FontAwesomeIcons.appStoreIos,
+                                    FontAwesomeIcons.apple,
                                     size: 14,
                                   ),
                                   label: Text(
-                                    'iOS',
+                                    'Ios',
                                     style: GoogleFonts.inter(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueGrey.shade700,
-                                    foregroundColor: Colors.white,
-                                    elevation: 0,
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: widget.project.color,
+                                    side: BorderSide(
+                                      color: widget.project.color.withOpacity(
+                                        0.3,
+                                      ),
+                                    ),
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 10,
                                     ),
@@ -453,7 +458,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 8),
+
+                            const SizedBox(width: 8),
                             if (widget.project.githubUrl?.isNotEmpty ?? false)
                               Expanded(
                                 child: OutlinedButton.icon(
