@@ -124,16 +124,16 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
             ),
             
             // Theme toggle button in top-right corner
-            SafeArea(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.all(isMobile ? 16 : 24),
-                  child: _buildHeaderThemeToggle(isMobile),
-                ),
-              ),
-            ),
-            
+            // SafeArea(
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Padding(
+            //       padding: EdgeInsets.all(isMobile ? 16 : 24),
+            //       child: _buildHeaderThemeToggle(isMobile),
+            //     ),
+            //   ),
+            // ),
+            //
             // Main content
             SafeArea(
               child: Center(
@@ -564,7 +564,7 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
             SizedBox(width: isMobile ? 16 : 20),
             _buildModernSocialButton(
               FontAwesomeIcons.linkedin,
-              'https://www.linkedin.com/in/mahmoud-ashraf-42730a11b/',
+              'https://www.linkedin.com/in/elkafrawel/',
               'LinkedIn',
               const Color(0xFF0077B5),
             ),

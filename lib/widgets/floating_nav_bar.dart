@@ -121,7 +121,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> with TickerProviderStat
                               _CompactNavItem(icon: Icons.school, title: 'Education', onTap: () => _scrollToSection(widget.educationKey)),
                               _CompactNavItem(icon: Icons.work, title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
                               _CompactNavItem(icon: Icons.email, title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
-                              _ThemeToggleButton(isCompact: true),
+                              // _ThemeToggleButton(isCompact: true),
                             ],
                           );
                         }
@@ -136,7 +136,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> with TickerProviderStat
                             _EnhancedNavItem(title: 'Education', onTap: () => _scrollToSection(widget.educationKey)),
                             _EnhancedNavItem(title: 'Projects', onTap: () => _scrollToSection(widget.projectsKey)),
                             _EnhancedNavItem(title: 'Contact', onTap: () => _scrollToSection(widget.contactKey)),
-                            _ThemeToggleButton(),
+                            // _ThemeToggleButton(),
                           ],
                         );
                       },
