@@ -13,7 +13,12 @@ import 'providers/theme_provider.dart';
 import 'utils/performance_utils.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(), child: const CVApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const CVApp(),
+    ),
+  );
 }
 
 class CVApp extends StatelessWidget {
@@ -25,9 +30,19 @@ class CVApp extends StatelessWidget {
       builder: (context, themeProvider, child) {
         return MaterialApp(
           title: 'Mahmoud ElKafrawy - Portfolio',
-          theme: themeProvider.lightTheme.copyWith(textTheme: GoogleFonts.interTextTheme(themeProvider.lightTheme.textTheme)),
-          darkTheme: themeProvider.darkTheme.copyWith(textTheme: GoogleFonts.interTextTheme(themeProvider.darkTheme.textTheme)),
-          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          theme: themeProvider.lightTheme.copyWith(
+            textTheme: GoogleFonts.interTextTheme(
+              themeProvider.lightTheme.textTheme,
+            ),
+          ),
+          darkTheme: themeProvider.darkTheme.copyWith(
+            textTheme: GoogleFonts.interTextTheme(
+              themeProvider.darkTheme.textTheme,
+            ),
+          ),
+          themeMode: themeProvider.isDarkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
           home: const CVHomePage(),
           debugShowCheckedModeBanner: false,
         );
@@ -65,17 +80,35 @@ class _CVHomePageState extends State<CVHomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _projectsAnimationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    _projectsAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
 
-    _projectsAnimation = CurvedAnimation(parent: _projectsAnimationController, curve: Curves.easeInOut);
+    _projectsAnimation = CurvedAnimation(
+      parent: _projectsAnimationController,
+      curve: Curves.easeInOut,
+    );
 
-    _workExperienceAnimationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    _workExperienceAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
 
-    _workExperienceAnimation = CurvedAnimation(parent: _workExperienceAnimationController, curve: Curves.easeInOut);
+    _workExperienceAnimation = CurvedAnimation(
+      parent: _workExperienceAnimationController,
+      curve: Curves.easeInOut,
+    );
 
-    _educationAnimationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    _educationAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
 
-    _educationAnimation = CurvedAnimation(parent: _educationAnimationController, curve: Curves.easeInOut);
+    _educationAnimation = CurvedAnimation(
+      parent: _educationAnimationController,
+      curve: Curves.easeInOut,
+    );
 
     // Use throttled scroll updates for better performance
     _throttledScrollUpdate = PerformanceUtils.throttle(
@@ -95,11 +128,11 @@ class _CVHomePageState extends State<CVHomePage> with TickerProviderStateMixin {
       if (_scrollController.offset > 200) {
         _workExperienceAnimationController.forward();
       }
-      
+
       if (_scrollController.offset > 400) {
         _educationAnimationController.forward();
       }
-      
+
       if (_scrollController.offset > 600) {
         _projectsAnimationController.forward();
       }
@@ -118,7 +151,11 @@ class _CVHomePageState extends State<CVHomePage> with TickerProviderStateMixin {
   void _scrollToSection(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
-      Scrollable.ensureVisible(context, duration: const Duration(milliseconds: 800), curve: Curves.easeInOut);
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
     }
   }
 
@@ -130,24 +167,41 @@ class _CVHomePageState extends State<CVHomePage> with TickerProviderStateMixin {
           // Optimized SingleChildScrollView with better physics
           SingleChildScrollView(
             controller: _scrollController,
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             child: RepaintBoundary(
               child: Column(
                 children: [
-                  RepaintBoundary(child: HeaderSection(onScrollToWork: () => _scrollToSection(_aboutKey))),
+                  RepaintBoundary(
+                    child: HeaderSection(
+                      onScrollToWork: () => _scrollToSection(_aboutKey),
+                    ),
+                  ),
                   RepaintBoundary(child: AboutSection(sectionKey: _aboutKey)),
                   RepaintBoundary(child: SkillsSection(sectionKey: _skillsKey)),
                   RepaintBoundary(
-                    child: WorkExperienceSection(sectionKey: _workExperienceKey, workExperienceAnimation: _workExperienceAnimation),
+                    child: WorkExperienceSection(
+                      sectionKey: _workExperienceKey,
+                      workExperienceAnimation: _workExperienceAnimation,
+                    ),
                   ),
                   RepaintBoundary(
-                    child: EducationSection(sectionKey: _educationKey, educationAnimation: _educationAnimation),
+                    child: EducationSection(
+                      sectionKey: _educationKey,
+                      educationAnimation: _educationAnimation,
+                    ),
                   ),
 
                   RepaintBoundary(
-                    child: ProjectsSection(sectionKey: _projectsKey, projectsAnimation: _projectsAnimation),
+                    child: ProjectsSection(
+                      sectionKey: _projectsKey,
+                      projectsAnimation: _projectsAnimation,
+                    ),
                   ),
-                  RepaintBoundary(child: ContactSection(sectionKey: _contactKey)),
+                  RepaintBoundary(
+                    child: ContactSection(sectionKey: _contactKey),
+                  ),
                 ],
               ),
             ),

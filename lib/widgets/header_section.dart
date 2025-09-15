@@ -8,6 +8,8 @@ import 'dart:ui';
 import 'dart:math' as math;
 import 'dart:async';
 
+import 'download_cv_button.dart';
+
 class HeaderSection extends StatefulWidget {
   final VoidCallback? onScrollToWork;
 
@@ -123,17 +125,20 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
               ),
             ),
             
-            // Theme toggle button in top-right corner
-            // SafeArea(
-            //   child: Align(
-            //     alignment: Alignment.topRight,
-            //     child: Padding(
-            //       padding: EdgeInsets.all(isMobile ? 16 : 24),
-            //       child: _buildHeaderThemeToggle(isMobile),
-            //     ),
-            //   ),
-            // ),
-            //
+            //Theme toggle button in top-right corner
+            Offstage(
+              offstage: isMobile,
+              child: SafeArea(
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: DownloadCVView(),
+                  ),
+                ),
+              ),
+            ),
+
             // Main content
             SafeArea(
               child: Center(
