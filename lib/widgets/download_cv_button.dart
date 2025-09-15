@@ -4,11 +4,11 @@ import 'package:web/web.dart' as web;
 class DownloadCVView extends StatelessWidget {
   const DownloadCVView({super.key});
 
+  final String _cvUrl =
+      "https://drive.google.com/file/d/1tNPhygQcFh421TAF-2tyMKMvfvb3QawX/view?usp=drive_link";
+
   void _downloadCV() {
-    final anchor = web.HTMLAnchorElement();
-    anchor.href = "assets/cv.pdf"; // Path inside web/assets or hosting
-    anchor.download = "Mahmoud_Ashraf_CV.pdf"; // Force download name
-    anchor.click();
+    web.window.open(_cvUrl, "_blank");
   }
 
   @override
