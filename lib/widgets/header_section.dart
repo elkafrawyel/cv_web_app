@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -126,15 +128,12 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
             ),
             
             //Theme toggle button in top-right corner
-            Offstage(
-              offstage: isMobile,
-              child: SafeArea(
-                child: Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: Padding(
-                    padding: EdgeInsets.all(24),
-                    child: DownloadCVView(),
-                  ),
+            SafeArea(
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: DownloadCVView(),
                 ),
               ),
             ),
