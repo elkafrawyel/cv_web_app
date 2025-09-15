@@ -5,7 +5,8 @@ class DownloadCVView extends StatelessWidget {
   const DownloadCVView({super.key});
 
   final String _cvUrl =
-      "https://drive.google.com/file/d/1tNPhygQcFh421TAF-2tyMKMvfvb3QawX/view?usp=drive_link";
+      // "https://1drv.ms/w/c/c1e5830f36b75553/ERmE--T2SlZKnwS-a6TvQuIBMbAbrbCGUWOdpEspKRcMDw?e=1nACC9";
+      "https://drive.google.com/file/d/1rPVeK-YpOJ33lpOY9e0FKH3pRE3bf_CH/view?usp=drive_link";
 
   void _downloadCV() {
     web.window.open(_cvUrl, "_blank");
