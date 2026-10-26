@@ -121,22 +121,32 @@ class _CVHomePageState extends State<CVHomePage> with TickerProviderStateMixin {
 
   void _handleScrollUpdate() {
     if (mounted) {
-      setState(() {
-        _showNavBar = _scrollController.offset > 100;
-      });
+      // Only rebuild the page when the nav bar visibility actually flips
+      final showNavBar = _scrollController.offset > 100;
+      if (showNavBar != _showNavBar) {
+        setState(() => _showNavBar = showNavBar);
+      }
 
-      if (_scrollController.offset > 200) {
+      if (_isNearViewport(_workExperienceKey)) {
         _workExperienceAnimationController.forward();
       }
 
-      if (_scrollController.offset > 400) {
+      if (_isNearViewport(_educationKey)) {
         _educationAnimationController.forward();
       }
 
-      if (_scrollController.offset > 600) {
+      if (_isNearViewport(_projectsKey)) {
         _projectsAnimationController.forward();
       }
     }
+  }
+
+  // True once the top of the section has scrolled into the lower part of the screen
+  bool _isNearViewport(GlobalKey key) {
+    final box = key.currentContext?.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize) return false;
+    final top = box.localToGlobal(Offset.zero).dy;
+    return top < MediaQuery.of(context).size.height * 0.85;
   }
 
   @override

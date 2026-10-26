@@ -26,7 +26,6 @@ class Project {
     required this.status,
   });
 
-
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       name: json['name'] as String,
@@ -42,36 +41,76 @@ class Project {
     );
   }
 
-// Helper function to parse FontAwesomeIcons
+  // Helper function to parse FontAwesomeIcons
   static IconData _parseIconData(String iconString) {
     switch (iconString) {
-      case 'FontAwesomeIcons.gears': return FontAwesomeIcons.gears;
-      case 'FontAwesomeIcons.bookOpen': return FontAwesomeIcons.bookOpen;
-      case 'FontAwesomeIcons.bolt': return FontAwesomeIcons.bolt;
-      case 'FontAwesomeIcons.graduationCap': return FontAwesomeIcons.graduationCap;
-      case 'FontAwesomeIcons.userCheck': return FontAwesomeIcons.userCheck;
-      case 'FontAwesomeIcons.palette': return FontAwesomeIcons.palette;
-      case 'FontAwesomeIcons.stethoscope': return FontAwesomeIcons.stethoscope;
-      case 'FontAwesomeIcons.hospital': return FontAwesomeIcons.hospital;
-      case 'FontAwesomeIcons.utensils': return FontAwesomeIcons.utensils;
-      case 'FontAwesomeIcons.gem': return FontAwesomeIcons.gem;
-      case 'FontAwesomeIcons.building': return FontAwesomeIcons.building;
-      case 'FontAwesomeIcons.water': return FontAwesomeIcons.water;
-      case 'FontAwesomeIcons.handsHelping': return FontAwesomeIcons.handsHelping;
-      case 'FontAwesomeIcons.futbol': return FontAwesomeIcons.futbol;
-      case 'FontAwesomeIcons.cheese': return FontAwesomeIcons.cheese;
-      case 'FontAwesomeIcons.server': return FontAwesomeIcons.server;
-      case 'FontAwesomeIcons.music': return FontAwesomeIcons.music;
-      case 'FontAwesomeIcons.house': return FontAwesomeIcons.house;
-      case 'FontAwesomeIcons.box': return FontAwesomeIcons.box;
-      case 'FontAwesomeIcons.spider': return FontAwesomeIcons.spider;
-      default: return FontAwesomeIcons.question; // default icon
+      case 'FontAwesomeIcons.gears':
+        return FontAwesomeIcons.gears;
+      case 'FontAwesomeIcons.bookOpen':
+        return FontAwesomeIcons.bookOpen;
+      case 'FontAwesomeIcons.bolt':
+        return FontAwesomeIcons.bolt;
+      case 'FontAwesomeIcons.graduationCap':
+        return FontAwesomeIcons.graduationCap;
+      case 'FontAwesomeIcons.userCheck':
+        return FontAwesomeIcons.userCheck;
+      case 'FontAwesomeIcons.palette':
+        return FontAwesomeIcons.palette;
+      case 'FontAwesomeIcons.stethoscope':
+        return FontAwesomeIcons.stethoscope;
+      case 'FontAwesomeIcons.hospital':
+        return FontAwesomeIcons.hospital;
+      case 'FontAwesomeIcons.utensils':
+        return FontAwesomeIcons.utensils;
+      case 'FontAwesomeIcons.gem':
+        return FontAwesomeIcons.gem;
+      case 'FontAwesomeIcons.building':
+        return FontAwesomeIcons.building;
+      case 'FontAwesomeIcons.water':
+        return FontAwesomeIcons.water;
+      case 'FontAwesomeIcons.handsHelping':
+        return FontAwesomeIcons.handsHelping;
+      case 'FontAwesomeIcons.futbol':
+        return FontAwesomeIcons.futbol;
+      case 'FontAwesomeIcons.cheese':
+        return FontAwesomeIcons.cheese;
+      case 'FontAwesomeIcons.server':
+        return FontAwesomeIcons.server;
+      case 'FontAwesomeIcons.music':
+        return FontAwesomeIcons.music;
+      case 'FontAwesomeIcons.house':
+        return FontAwesomeIcons.house;
+      case 'FontAwesomeIcons.box':
+        return FontAwesomeIcons.box;
+      case 'FontAwesomeIcons.spider':
+        return FontAwesomeIcons.spider;
+      case 'FontAwesomeIcons.shop':
+        return FontAwesomeIcons.shop;
+      case 'FontAwesomeIcons.store':
+        return FontAwesomeIcons.store;
+      case 'FontAwesomeIcons.cashRegister':
+        return FontAwesomeIcons.cashRegister;
+      case 'FontAwesomeIcons.bagShopping':
+        return FontAwesomeIcons.bagShopping;
+      case 'FontAwesomeIcons.calendarCheck':
+        return FontAwesomeIcons.calendarCheck;
+      case 'FontAwesomeIcons.child':
+        return FontAwesomeIcons.child;
+      case 'FontAwesomeIcons.comments':
+        return FontAwesomeIcons.comments;
+      case 'FontAwesomeIcons.dress':
+        return FontAwesomeIcons.shirt; // no dress icon in the free set
+      case 'FontAwesomeIcons.truck':
+        return FontAwesomeIcons.truck;
+      case 'FontAwesomeIcons.tv':
+        return FontAwesomeIcons.tv;
+      default:
+        return FontAwesomeIcons.question; // default icon
     }
   }
 
-// Helper function to parse color from hex string
+  // Helper function to parse color from hex string
   static Color _parseColor(String hexString) {
     return Color(int.parse(hexString.substring(1), radix: 16));
   }
 }
-

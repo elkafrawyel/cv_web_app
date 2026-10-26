@@ -1,10 +1,28 @@
 final List<Map<String, dynamic>> jsonWorkExperiences = [
   {
+    "company": "Birdeye",
+    "position": "Senior Flutter Developer",
+    "duration": "10/2025 - Present",
+    "location": "Cairo, Egypt",
+    "description": "Building Birdeye POS, a smart point-of-sale system that helps retail and hospitality businesses manage sales, inventory, and customers.",
+    "responsibilities": [
+      "Developing the Birdeye POS app end-to-end with Flutter",
+      "Building fast checkout flows with support for multiple payment methods",
+      "Implementing offline mode with local storage for uninterrupted sales",
+      "Delivering real-time inventory tracking and sales reporting features",
+    ],
+    "technologies": ["Flutter", "Dart", "Firebase", "GetX", "Hive", "REST APIs"],
+    "icon": "FontAwesomeIcons.cashRegister",
+    "color": "#2563EB",
+    "companyUrl": "",
+    "employmentType": "Full-time",
+  },
+  {
     "company": "Kodepedia",
     "position": "Senior Flutter Developer",
-    "duration": "02/2025 - Present",
+    "duration": "02/2025 - 10/2025",
     "location": "Cairo, Egypt",
-    "description": "Currently building scalable Flutter applications for Kodepedia clients.",
+    "description": "Built scalable Flutter applications for Kodepedia clients.",
     "responsibilities": [
       "Leading Flutter development for client projects",
       "Implementing clean architecture and CI/CD pipelines",

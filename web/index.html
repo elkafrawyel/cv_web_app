@@ -38,8 +38,39 @@
   <meta property="og:image" content="https://m-elkafrawy.web.app/preview.jpg" />
   <meta property="og:url" content="https://m-elkafrawy.web.app/" />
   <meta property="og:type" content="website" />
+
+  <!-- Splash shown while Flutter loads, styled like the header so the hand-off is seamless -->
+  <style>
+    html, body { margin: 0; height: 100%; background: #0F0F23; }
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+      background: linear-gradient(135deg, #0F0F23 0%, #1A1A3E 30%, #2D1B69 70%, #6366F1 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      transition: opacity 400ms ease;
+    }
+    #splash.hidden { opacity: 0; pointer-events: none; }
+    #splash .ring {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.15); border-top-color: #fff;
+      animation: spin 0.9s linear infinite;
+    }
+    #splash .name { color: rgba(255, 255, 255, 0.85); font-size: 15px; letter-spacing: 2px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
+  <div id="splash">
+    <div class="ring"></div>
+    <div class="name">MAHMOUD ELKAFRAWY</div>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var splash = document.getElementById('splash');
+      splash.classList.add('hidden');
+      setTimeout(function () { splash.remove(); }, 450);
+    });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

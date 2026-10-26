@@ -67,7 +67,7 @@ class ContactSection extends StatelessWidget {
                           FontAwesomeIcons.envelope,
                           'Email',
                           'Email me with your ideas.',
-                          'mailto:mahmoud.ashraf.elkafrawy@email.com',
+                          'mailto:mahmoud.ashraf.elkafrawy@gmail.com',
                           const Color(0xFFEA4335),
                           context,
                         ),
@@ -103,7 +103,7 @@ class ContactSection extends StatelessWidget {
                         FontAwesomeIcons.envelope,
                         'Email',
                         'Email me with your ideas.',
-                        'mailto:mahmoud.ashraf.elkafrawy@email.com',
+                        'mailto:mahmoud.ashraf.elkafrawy@gmail.com',
                         const Color(0xFFEA4335),
                         context,
                       ),
@@ -141,7 +141,7 @@ class ContactSection extends StatelessWidget {
                     boxShadow: [BoxShadow(color: const Color(0xFF6366F1).withOpacity(0.4), blurRadius: 20, offset: const Offset(0, 8))],
                   ),
                   child: ElevatedButton(
-                    onPressed: () => _launchURL('mailto:mahmoud.ashraf.elkafrawy@email.com'),
+                    onPressed: () => _launchURL('mailto:mahmoud.ashraf.elkafrawy@gmail.com'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Colors.white,

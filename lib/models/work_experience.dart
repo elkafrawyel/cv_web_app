@@ -44,6 +44,39 @@ class WorkExperience {
     );
   }
 
+  bool get isCurrent => duration.toLowerCase().contains('present');
+
+  // Human readable tenure, e.g. "1 yr 3 mos", computed from the duration string
+  String? get tenure {
+    final parts = duration.split('-').map((e) => e.trim()).toList();
+    if (parts.length != 2) return null;
+    final start = _parseDate(parts[0]);
+    final end = isCurrent ? DateTime.now() : _parseDate(parts[1]);
+    if (start == null || end == null) return null;
+
+    final months = ((end.year - start.year) * 12 + end.month - start.month).clamp(1, 1200);
+    final years = months ~/ 12;
+    final remaining = months % 12;
+    return [
+      if (years > 0) '$years yr${years > 1 ? 's' : ''}',
+      if (remaining > 0) '$remaining mo${remaining > 1 ? 's' : ''}',
+    ].join(' ');
+  }
+
+  int? get startYear => _parseDate(duration.split('-').first.trim())?.year;
+
+  // Supports "MM/YYYY" and "YYYY"
+  static DateTime? _parseDate(String value) {
+    final segments = value.split('/');
+    if (segments.length == 2) {
+      final month = int.tryParse(segments[0]);
+      final year = int.tryParse(segments[1]);
+      if (month != null && year != null) return DateTime(year, month);
+    }
+    final year = int.tryParse(value);
+    return year != null ? DateTime(year) : null;
+  }
+
   // Helper function to parse FontAwesome icons
   static IconData _parseIconData(String iconString) {
     switch (iconString) {
@@ -63,6 +96,7 @@ class WorkExperience {
       case 'FontAwesomeIcons.layerGroup': return FontAwesomeIcons.layerGroup;
       case 'FontAwesomeIcons.paintBrush': return FontAwesomeIcons.paintbrush;
       case 'FontAwesomeIcons.android': return FontAwesomeIcons.android;
+      case 'FontAwesomeIcons.cashRegister': return FontAwesomeIcons.cashRegister;
       default: return FontAwesomeIcons.briefcase; // default icon
     }
   }

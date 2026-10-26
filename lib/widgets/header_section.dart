@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,7 +11,16 @@ import 'dart:ui';
 import 'dart:math' as math;
 import 'dart:async';
 
+import '../models/work_experience_list.dart';
 import 'download_cv_button.dart';
+
+// Flip to true to show the "Save My CV" button again
+const bool _showDownloadCv = false;
+
+const String _email = 'mahmoud.ashraf.elkafrawy@gmail.com';
+const String _phone = '+201019744661';
+const String _phoneDisplay = '+20 101 974 4661';
+const String _location = 'Cairo, Egypt';
 
 class HeaderSection extends StatefulWidget {
   final VoidCallback? onScrollToWork;
@@ -107,11 +117,17 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
         ),
         child: Stack(
           children: [
-            // Animated background elements
-            _buildAnimatedBackground(screenWidth, screenHeight, isMobile),
-            
-            // Floating particles
-            ...List.generate(isMobile ? 3 : 6, (index) => _buildFloatingParticle(index, screenWidth, screenHeight)),
+            // Animated background elements and floating particles, isolated so they don't repaint the content
+            RepaintBoundary(
+              child: IgnorePointer(
+                child: Stack(
+                  children: [
+                    _buildAnimatedBackground(screenWidth, screenHeight, isMobile),
+                    ...List.generate(isMobile ? 3 : 6, (index) => _buildFloatingParticle(index, screenWidth, screenHeight)),
+                  ],
+                ),
+              ),
+            ),
             
             // Mesh gradient overlay
             Container(
@@ -127,16 +143,16 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
               ),
             ),
             
-            //Theme toggle button in top-right corner
-            SafeArea(
-              child: Align(
-                alignment: AlignmentDirectional.topStart,
-                child: Padding(
-                  padding: EdgeInsets.all(24),
-                  child: DownloadCVView(),
+            if (_showDownloadCv)
+              const SafeArea(
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: DownloadCVView(),
+                  ),
                 ),
               ),
-            ),
 
             // Main content
             SafeArea(
@@ -148,40 +164,42 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
                       horizontal: isMobile ? 20 : 40,
                       vertical: isMobile ? 40 : 60,
                     ),
-                    child: FadeTransition(
-                      opacity: _headerAnimation,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Profile section
-                          _buildProfileSection(isMobile, isTablet),
-                          
-                          SizedBox(height: isMobile ? 30 : 40),
-                          
-                          // Name with enhanced typography
-                          _buildNameSection(isMobile, isTablet),
-                          
-                          SizedBox(height: isMobile ? 16 : 20),
-                          
-                          // Animated typewriter title
-                          _buildTypewriterTitle(isMobile),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Profile section
+                        _staggered(0, _buildProfileSection(isMobile, isTablet)),
 
-                          SizedBox(height: isMobile ? 30 : 40),
+                        SizedBox(height: isMobile ? 30 : 40),
 
-                          // Contact and location
-                          _buildContactAndLocation(isMobile),
+                        // Name with enhanced typography
+                        _staggered(1, _buildNameSection(isMobile, isTablet)),
 
-                          SizedBox(height: isMobile ? 30 : 40),
-                          
-                          // Social section
-                          _buildSocialSection(isMobile),
-                          
-                          SizedBox(height: isMobile ? 30 : 40),
-                          
-                          // Scroll indicator
-                          _buildScrollIndicator(),
+                        SizedBox(height: isMobile ? 16 : 20),
+
+                        // Animated typewriter title
+                        _staggered(2, _buildTypewriterTitle(isMobile)),
+
+                        if (_currentRole != null) ...[
+                          SizedBox(height: isMobile ? 14 : 18),
+                          _staggered(3, _buildCurrentRole(isMobile)),
                         ],
-                      ),
+
+                        SizedBox(height: isMobile ? 30 : 40),
+
+                        // Contact and location
+                        _staggered(4, _buildContactAndLocation(isMobile, isTablet)),
+
+                        SizedBox(height: isMobile ? 30 : 40),
+
+                        // Social section
+                        _staggered(5, _buildSocialSection(isMobile)),
+
+                        SizedBox(height: isMobile ? 30 : 40),
+
+                        // Scroll indicator
+                        _staggered(6, _buildScrollIndicator()),
+                      ],
                     ),
                   ),
                 ),
@@ -189,6 +207,80 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // Fades and slides each header block in, one after another
+  Widget _staggered(int order, Widget child) {
+    return AnimatedBuilder(
+      animation: _headerAnimationController,
+      child: child,
+      builder: (context, child) {
+        final start = order * 0.05;
+        final t = Interval(start, start + 0.25, curve: Curves.easeOutCubic).transform(_headerAnimationController.value);
+        // Skip the opacity layer once fully visible, it's costly to keep around
+        if (t >= 1) return child!;
+        return Opacity(
+          opacity: t,
+          child: Transform.translate(offset: Offset(0, (1 - t) * 30), child: child),
+        );
+      },
+    );
+  }
+
+  // The role marked as "Present" in the work experience list
+  Map<String, dynamic>? get _currentRole {
+    for (final role in jsonWorkExperiences) {
+      if ((role['duration'] as String).toLowerCase().contains('present')) return role;
+    }
+    return null;
+  }
+
+  Widget _buildCurrentRole(bool isMobile) {
+    final role = _currentRole!;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 14 : 18, vertical: isMobile ? 8 : 10),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: const Color(0xFF34D399).withValues(alpha: 0.4)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Pulsing "online" dot
+          AnimatedBuilder(
+            animation: _orbitController,
+            builder: (context, _) {
+              final t = (math.sin(_orbitController.value * 8 * math.pi) + 1) / 2;
+              return Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF34D399),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(color: const Color(0xFF34D399).withValues(alpha: 0.6 * t), blurRadius: 4 + 6 * t, spreadRadius: 2 * t),
+                  ],
+                ),
+              );
+            },
+          ),
+          SizedBox(width: isMobile ? 8 : 10),
+          Flexible(
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: 'Currently ${role['position']} at ', style: TextStyle(color: Colors.white.withValues(alpha: 0.75))),
+                  TextSpan(text: role['company'] as String, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                ],
+              ),
+              style: GoogleFonts.inter(fontSize: isMobile ? 12 : 14, fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -219,9 +311,7 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(profileSize / 2),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                child: Container(
+              child: Container(
                   decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withOpacity(0.1)),
                   child: ClipOval(
                     child: Image.asset(
@@ -240,7 +330,6 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
                     ),
                   ),
                 ),
-              ),
             ),
           ),
         );
@@ -322,234 +411,95 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
     );
   }
 
-  Widget _buildContactAndLocation(bool isMobile) {
-    return AnimatedBuilder(
-      animation: _headerAnimation,
-      builder: (context, child) {
-        return Transform.scale(
-          scale: 0.8 + (_headerAnimation.value * 0.2),
-          child: Container(
-            padding: EdgeInsets.all(isMobile ? 24 : 32),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.white.withOpacity(0.15), Colors.white.withOpacity(0.08), Colors.white.withOpacity(0.12)],
+  Widget _buildContactAndLocation(bool isMobile, bool isTablet) {
+    final stacked = isMobile || isTablet;
+    final tiles = [
+      _ContactTile(
+        icon: FontAwesomeIcons.envelope,
+        label: 'Email',
+        value: _email,
+        url: 'mailto:$_email',
+        accentColor: const Color(0xFFF87171),
+        onOpen: _launchURL,
+      ),
+      _ContactTile(
+        icon: FontAwesomeIcons.phone,
+        label: 'Phone',
+        value: _phoneDisplay,
+        url: 'tel:$_phone',
+        accentColor: const Color(0xFF34D399),
+        onOpen: _launchURL,
+      ),
+      _ContactTile(
+        icon: FontAwesomeIcons.locationDot,
+        label: 'Location',
+        value: _location,
+        url: 'https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(_location)}',
+        accentColor: const Color(0xFFFBBF24),
+        onOpen: _launchURL,
+        copyable: false,
+      ),
+    ];
+
+    return Container(
+      padding: EdgeInsets.all(isMobile ? 18 : 28),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.white.withValues(alpha: 0.14), Colors.white.withValues(alpha: 0.06)],
+        ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 40, offset: const Offset(0, 20)),
+          BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.25), blurRadius: 40, offset: const Offset(0, 10)),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Title row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(width: 24, height: 1.5, color: Colors.white.withValues(alpha: 0.3)),
+              const SizedBox(width: 12),
+              Text(
+                'CONTACT INFORMATION',
+                style: GoogleFonts.inter(
+                  fontSize: isMobile ? 12 : 13,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white.withValues(alpha: 0.9),
+                  letterSpacing: 2,
+                ),
               ),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Colors.white.withOpacity(0.3), width: 1.5),
-              boxShadow: [
-                BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 30, offset: const Offset(0, 15)),
-                BoxShadow(color: const Color(0xFF6366F1).withOpacity(0.3), blurRadius: 40, offset: const Offset(0, 20)),
-                BoxShadow(color: Colors.white.withOpacity(0.1), blurRadius: 20, offset: const Offset(0, -5)),
+              const SizedBox(width: 12),
+              Container(width: 24, height: 1.5, color: Colors.white.withValues(alpha: 0.3)),
+            ],
+          ),
+          SizedBox(height: isMobile ? 16 : 22),
+          if (stacked)
+            Column(
+              children: [
+                for (var i = 0; i < tiles.length; i++) ...[
+                  if (i > 0) const SizedBox(height: 12),
+                  _staggered(5 + i, tiles[i]),
+                ],
+              ],
+            )
+          else
+            Row(
+              children: [
+                for (var i = 0; i < tiles.length; i++) ...[
+                  if (i > 0) const SizedBox(width: 14),
+                  // Email gets more room since it's the longest value
+                  Expanded(flex: i == 0 ? 5 : 4, child: _staggered(5 + i, tiles[i])),
+                ],
               ],
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                child: Column(
-                  children: [
-                    // Section title
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [const Color(0xFF6366F1).withOpacity(0.3), const Color(0xFF8B5CF6).withOpacity(0.3)]),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-                      ),
-                      child: Text(
-                        'Contact Information',
-                        style: GoogleFonts.inter(fontSize: isMobile ? 14 : 16, fontWeight: FontWeight.w600, color: Colors.white, letterSpacing: 0.5),
-                      ),
-                    ),
-                    SizedBox(height: isMobile ? 20 : 24),
-
-                    // Contact items
-                    isMobile
-                        ? Column(
-                            children: [
-                              _buildEnhancedContactItem(
-                                FontAwesomeIcons.envelope,
-                                'Email',
-                                'mahmoud.ashraf.elkafrawy@email.com',
-                                null,
-                                const Color(0xFFEA4335),
-                                isMobile,
-                                0,
-                              ),
-                              const SizedBox(height: 16),
-                              _buildEnhancedContactItem(
-                                FontAwesomeIcons.phone,
-                                'Phone',
-                                '+20 101 974 4661',
-                                null,
-                                const Color(0xFF34D399),
-                                isMobile,
-                                1,
-                              ),
-
-                              const SizedBox(height: 16),
-                              _buildEnhancedContactItem(
-                                FontAwesomeIcons.locationDot,
-                                'Location',
-                                'Cairo, Egypt',
-                                null,
-                                const Color(0xFFF59E0B),
-                                isMobile,
-                                3,
-                              ),
-                            ],
-                          )
-                        : Row(
-                            children: [
-                              Expanded(
-                                child: _buildEnhancedContactItem(
-                                  FontAwesomeIcons.envelope,
-                                  'Email',
-                                  'mahmoud.ashraf.elkafrawy@email.com',
-                                  null,
-                                  const Color(0xFFEA4335),
-                                  isMobile,
-                                  0,
-                                ),
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: _buildEnhancedContactItem(
-                                  FontAwesomeIcons.phone,
-                                  'Phone',
-                                  '+20 101 974 4661',
-                                  null,
-                                  const Color(0xFF34D399),
-                                  isMobile,
-                                  1,
-                                ),
-                              ),
-
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: _buildEnhancedContactItem(
-                                  FontAwesomeIcons.locationDot,
-                                  'Location',
-                                  'Cairo, Egypt',
-                                  null,
-                                  const Color(0xFFF59E0B),
-                                  isMobile,
-                                  3,
-                                ),
-                              ),
-                            ],
-                          ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildEnhancedContactItem(IconData icon, String label, String value, String? url, Color accentColor, bool isMobile, int index) {
-    return TweenAnimationBuilder<double>(
-      duration: Duration(milliseconds: 600 + (index * 150)),
-      tween: Tween(begin: 0.0, end: 1.0),
-      curve: Curves.elasticOut,
-      builder: (context, animation, child) {
-        return Transform.translate(
-          offset: Offset(0, (1 - animation) * 30),
-          child: Opacity(
-            opacity: animation.clamp(0.0, 1.0),
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: isMobile ? 12 : 16,
-                vertical: isMobile ? 16 : 20,
-              ),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white.withOpacity(0.08),
-                    Colors.white.withOpacity(0.04),
-                    accentColor.withOpacity(0.06),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: accentColor.withOpacity(0.15),
-                  width: 1,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Icon with subtle background
-                      Container(
-                        width: isMobile ? 32 : 36,
-                        height: isMobile ? 32 : 36,
-                        decoration: BoxDecoration(
-                          color: accentColor.withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Icon(
-                          icon,
-                          color: accentColor,
-                          size: isMobile ? 16 : 18,
-                        ),
-                      ),
-                      SizedBox(width: isMobile ? 8 : 12),
-                      
-                      // Text content
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              label,
-                              style: GoogleFonts.inter(
-                                fontSize: isMobile ? 11 : 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
-                                letterSpacing: 0.3,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              value,
-                              style: GoogleFonts.inter(
-                                fontSize: isMobile ? 10 : 11,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white.withOpacity(0.7),
-                                height: 1.2,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -580,7 +530,7 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
               const Color(0xFF25D366),
             ),
             SizedBox(width: isMobile ? 16 : 20),
-            _buildModernSocialButton(FontAwesomeIcons.envelope, 'mailto:mahmoud.ashraf.elkafrawy@email.com', 'Email', const Color(0xFFEA4335)),
+            _buildModernSocialButton(FontAwesomeIcons.envelope, 'mailto:$_email', 'Email', const Color(0xFFEA4335)),
           ],
         ),
       ],
@@ -626,24 +576,29 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
   Widget _buildModernSocialButton(IconData icon, String url, String tooltip, Color brandColor) {
     return Tooltip(
       message: tooltip,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () => _launchURL(url),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [brandColor.withOpacity(0.8), brandColor.withOpacity(0.6)],
-              ),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [BoxShadow(color: brandColor.withOpacity(0.3), blurRadius: 15, offset: const Offset(0, 5))],
+      child: _HoverLift(
+        onTap: () => _launchURL(url),
+        builder: (isHovered) => AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [brandColor.withValues(alpha: isHovered ? 1 : 0.8), brandColor.withValues(alpha: isHovered ? 0.85 : 0.6)],
             ),
-            child: Icon(icon, color: Colors.white, size: 20),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.white.withValues(alpha: isHovered ? 0.5 : 0)),
+            boxShadow: [
+              BoxShadow(
+                color: brandColor.withValues(alpha: isHovered ? 0.6 : 0.3),
+                blurRadius: isHovered ? 24 : 15,
+                offset: Offset(0, isHovered ? 10 : 5),
+              ),
+            ],
           ),
+          child: Icon(icon, color: Colors.white, size: 20),
         ),
       ),
     );
@@ -913,6 +868,209 @@ class _HeaderSectionState extends State<HeaderSection> with TickerProviderStateM
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
+  }
+}
+
+class _ContactTile extends StatefulWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final String url;
+  final Color accentColor;
+  final Future<void> Function(String url) onOpen;
+  final bool copyable;
+
+  const _ContactTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.url,
+    required this.accentColor,
+    required this.onOpen,
+    this.copyable = true,
+  });
+
+  @override
+  State<_ContactTile> createState() => _ContactTileState();
+}
+
+class _ContactTileState extends State<_ContactTile> {
+  bool _isHovered = false;
+  bool _copied = false;
+  Timer? _copiedTimer;
+
+  @override
+  void dispose() {
+    _copiedTimer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _copy() async {
+    await Clipboard.setData(ClipboardData(text: widget.value));
+    if (!mounted) return;
+    setState(() => _copied = true);
+    _copiedTimer?.cancel();
+    _copiedTimer = Timer(const Duration(milliseconds: 1600), () {
+      if (mounted) setState(() => _copied = false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final accent = widget.accentColor;
+
+    return Semantics(
+      button: true,
+      label: '${widget.label}: ${widget.value}',
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: () => widget.onOpen(widget.url),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 220),
+            curve: Curves.easeOutCubic,
+            transform: Matrix4.translationValues(0, _isHovered ? -4 : 0, 0),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: _isHovered ? 0.14 : 0.07),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: accent.withValues(alpha: _isHovered ? 0.6 : 0.2)),
+              boxShadow: [
+                BoxShadow(
+                  color: _isHovered ? accent.withValues(alpha: 0.25) : Colors.transparent,
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                AnimatedScale(
+                  scale: _isHovered ? 1.1 : 1.0,
+                  duration: const Duration(milliseconds: 220),
+                  curve: Curves.easeOutBack,
+                  child: Container(
+                    width: 42,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [accent.withValues(alpha: 0.35), accent.withValues(alpha: 0.15)],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: accent.withValues(alpha: 0.4)),
+                    ),
+                    child: Center(child: FaIcon(widget.icon, color: accent, size: 17)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        widget.label.toUpperCase(),
+                        style: GoogleFonts.inter(
+                          fontSize: 10.5,
+                          fontWeight: FontWeight.w700,
+                          color: accent,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        // Zero-width space lets a long email wrap after the "@" on narrow screens
+                        widget.value.replaceAll('@', '@\u200B'),
+                        style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                if (widget.copyable)
+                  Tooltip(
+                    message: _copied ? 'Copied!' : 'Copy ${widget.label.toLowerCase()}',
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: _copy,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: _copied ? const Color(0xFF34D399).withValues(alpha: 0.25) : Colors.white.withValues(alpha: 0.08),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 200),
+                            transitionBuilder: (child, animation) => ScaleTransition(scale: animation, child: child),
+                            child: Icon(
+                              _copied ? Icons.check_rounded : Icons.copy_rounded,
+                              key: ValueKey(_copied),
+                              size: 15,
+                              color: _copied ? const Color(0xFF34D399) : Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  AnimatedSlide(
+                    offset: Offset(_isHovered ? 0.2 : 0, 0),
+                    duration: const Duration(milliseconds: 220),
+                    child: Icon(Icons.arrow_outward_rounded, size: 16, color: Colors.white.withValues(alpha: _isHovered ? 0.9 : 0.5)),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HoverLift extends StatefulWidget {
+  final VoidCallback onTap;
+  final Widget Function(bool isHovered) builder;
+
+  const _HoverLift({required this.onTap, required this.builder});
+
+  @override
+  State<_HoverLift> createState() => _HoverLiftState();
+}
+
+class _HoverLiftState extends State<_HoverLift> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedSlide(
+          offset: Offset(0, _isHovered ? -0.12 : 0),
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOutCubic,
+          child: AnimatedScale(
+            scale: _isHovered ? 1.12 : 1.0,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOutBack,
+            child: widget.builder(_isHovered),
+          ),
+        ),
+      ),
+    );
   }
 }
 

@@ -1,5 +1,18 @@
 List jsonProjects = [
   {
+    "name": "BirdEye POS",
+    "description":
+        "🦅 BirdEye POS – Smart Point of Sale System\n\nBirdEye POS is a comprehensive point-of-sale solution designed to streamline retail and hospitality operations. It empowers businesses to manage sales, inventory, and customer relationships efficiently.\n\n✅ For Businesses:\n\nFast and secure checkout process\n\nReal-time inventory tracking and management\n\nDetailed sales reports and analytics\n\nEmployee management and performance tracking\n\n✅ Key Features:\n\nSupport for multiple payment methods\n\nOffline mode for uninterrupted service\n\nCustomer loyalty program integration\n\nUser-friendly interface for quick training\n\nWith BirdEye POS, running your business becomes smoother, smarter, and more profitable.\n\n💼 BirdEye POS – Elevate Your Business Operations.",
+    "imageUrl": "assets/images/birdeye.png",
+    "icon": "FontAwesomeIcons.cashRegister",
+    "color": "#FF2563EB",
+    // "githubUrl": "",
+    "androidLiveUrl": "",
+    "iosLiveUrl": "",
+    "techStack": ["Flutter", "Firebase", "GetX", "Hive"],
+    "status": "Completed",
+  },
+  {
     "name": "VPM System",
     "description":
         "🚗 VPM System – Smart Parking & Driver Management\n\nThe VPM System is a complete solution for managing parking spaces, vehicles, and drivers with ease and efficiency. Whether you are an admin managing multiple parking spots or a driver looking for a seamless experience, the VPM System has you covered.\n\n✅ For Admins / Management:\n\nReal-time monitoring of available parking spaces\n\nManage vehicle entries, exits, and reservations\n\nTrack driver activity and vehicle history\n\nGenerate detailed reports for better decision-making\n\n👨‍✈️ For Drivers:\n\nEasily register and manage your vehicle details\n\nGet instant parking confirmations and availability updates\n\nNavigate directly to your assigned spot\n\nReceive notifications for entry, exit, or time limits\n\nWith a user-friendly interface and real-time updates, the VPM System improves parking operations, reduces waiting times, and ensures a smooth experience for both admins and drivers.",
@@ -7,9 +20,19 @@ List jsonProjects = [
     "icon": "FontAwesomeIcons.gears",
     "color": "#FF34C759",
     // "githubUrl": "",
-    "androidLiveUrl": "https://play.google.com/store/apps/details?id=com.vpmsystems.parking",
+    "androidLiveUrl":
+        "https://play.google.com/store/apps/details?id=com.vpmsystems.parking",
     "iosLiveUrl": "https://apps.apple.com/us/app/vpm-ksa/id6504422858",
-    "techStack": ["Flutter", "Firebase", "Dio", "Getx", "Google Maps", "Geolocator", "QR Code Scanner", "Push Notifications"],
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "Dio",
+      "Getx",
+      "Google Maps",
+      "Geolocator",
+      "QR Code Scanner",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -49,7 +72,14 @@ List jsonProjects = [
     "color": "#FF007AFF",
     // "githubUrl": "https://github.com/elkafrawyel/Tallam",
     "androidLiveUrl": "",
-    "techStack": ["Flutter", "Dio", "Bloc", "Video Player", "Geolocator", "Push Notifications"],
+    "techStack": [
+      "Flutter",
+      "Dio",
+      "Bloc",
+      "Video Player",
+      "Geolocator",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -60,8 +90,10 @@ List jsonProjects = [
     "icon": "FontAwesomeIcons.userCheck",
     "color": "#FF06B6D4",
     // "githubUrl": "",
-    "iosLiveUrl": "https://apps.apple.com/us/app/%D8%B1%D8%B5%D8%AF-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%AC%D8%AF/id6456840349",
-    "androidLiveUrl": "https://play.google.com/store/apps/details?id=com.worldofss.MotwagedRassdApp",
+    "iosLiveUrl":
+        "https://apps.apple.com/us/app/%D8%B1%D8%B5%D8%AF-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%AC%D8%AF/id6456840349",
+    "androidLiveUrl":
+        "https://play.google.com/store/apps/details?id=com.worldofss.MotwagedRassdApp",
     "techStack": ["Flutter", "Firebase", "Dio", "Getx", "Push Notifications"],
     "status": "Completed",
   },
@@ -75,20 +107,35 @@ List jsonProjects = [
     // "githubUrl": "https://github.com/elkafrawyel/amirahalnassir",
     "androidLiveUrl": "",
     "iosLiveUrl": "",
-    "techStack": ["Flutter", "Firebase", "Dio", "GetX", "Push Notifications", "Video Player"],
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "Dio",
+      "GetX",
+      "Push Notifications",
+      "Video Player",
+    ],
     "status": "Completed",
   },
   {
     "name": "HostN",
     "description":
-    "🌐 HostN – Smart Hosting & Property Management\n\nHostN is a powerful platform designed to simplify property hosting, bookings, and guest management. Whether you’re renting out a single unit or managing multiple properties, HostN gives you the tools to stay organized and maximize your earnings.\n\n✅ For Hosts & Property Owners:\n\nList properties with photos, details, and pricing\n\nManage bookings, availability, and cancellations in real time\n\nTrack earnings and generate performance reports\n\nCommunicate directly with guests through the app\n\n✅ For Guests:\n\nDiscover and book stays quickly and securely\n\nBrowse property details, amenities, and reviews\n\nReceive instant booking confirmations\n\nEnjoy smooth check-in and stay experiences\n\nWith HostN, hosting and booking become seamless, transparent, and stress-free — bringing comfort to guests and efficiency to hosts.\n\n🏡 HostN – Where Stays Feel Like Home.",
+        "🌐 HostN – Smart Hosting & Property Management\n\nHostN is a powerful platform designed to simplify property hosting, bookings, and guest management. Whether you’re renting out a single unit or managing multiple properties, HostN gives you the tools to stay organized and maximize your earnings.\n\n✅ For Hosts & Property Owners:\n\nList properties with photos, details, and pricing\n\nManage bookings, availability, and cancellations in real time\n\nTrack earnings and generate performance reports\n\nCommunicate directly with guests through the app\n\n✅ For Guests:\n\nDiscover and book stays quickly and securely\n\nBrowse property details, amenities, and reviews\n\nReceive instant booking confirmations\n\nEnjoy smooth check-in and stay experiences\n\nWith HostN, hosting and booking become seamless, transparent, and stress-free — bringing comfort to guests and efficiency to hosts.\n\n🏡 HostN – Where Stays Feel Like Home.",
     "imageUrl": "assets/images/hostn.png",
     "icon": "FontAwesomeIcons.server",
     "color": "#FFEF7722",
     // "githubUrl": "https://github.com/elkafrawyel/hostin",
-    "androidLiveUrl": "https://play.google.com/store/apps/details?id=com.fabrica.hostin",
+    "androidLiveUrl":
+        "https://play.google.com/store/apps/details?id=com.fabrica.hostin",
     "iosLiveUrl": "https://apps.apple.com/eg/app/hostn/id1639865798",
-    "techStack": ["Flutter", "Firebase", "Dio", "GetX", "Push Notifications", "Video Player"],
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "Dio",
+      "GetX",
+      "Push Notifications",
+      "Video Player",
+    ],
     "status": "Completed",
   },
   {
@@ -101,7 +148,14 @@ List jsonProjects = [
     // "githubUrl": "https://github.com/elkafrawyel/bassant_academy",
     "androidLiveUrl": "",
     "iosLiveUrl": "",
-    "techStack": ["Flutter", "Firebase", "Dio", "Getx", "Push Notifications", "Video Player"],
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "Dio",
+      "Getx",
+      "Push Notifications",
+      "Video Player",
+    ],
     "status": "Completed",
   },
   {
@@ -127,7 +181,13 @@ List jsonProjects = [
     // "githubUrl": "https://github.com/elkafrawyel/souq-medical",
     "androidLiveUrl": "https://appgallery.huawei.com/app/C105718623",
     "iosLiveUrl": "https://appgallery.huawei.com/app/C105718623",
-    "techStack": ["Flutter", "Provider", "Firebase", "http", "Push Notifications"],
+    "techStack": [
+      "Flutter",
+      "Provider",
+      "Firebase",
+      "http",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -177,9 +237,10 @@ List jsonProjects = [
     "icon": "FontAwesomeIcons.building",
     "color": "#FF3B82F6",
     // "githubUrl": "",
-    "androidLiveUrl": "https://play.google.com/store/apps/details?id=com.fabrica.alqamzi",
+    "androidLiveUrl":
+        "https://play.google.com/store/apps/details?id=com.fabrica.alqamzi",
     "iosLiveUrl": "https://apps.apple.com/eg/app/alqamzi/id6443466179",
-    "techStack": ["Flutter","Rest Api"],
+    "techStack": ["Flutter", "Rest Api"],
     "status": "Completed",
   },
   {
@@ -190,8 +251,10 @@ List jsonProjects = [
     "icon": "FontAwesomeIcons.water",
     "color": "#FF06B6D4",
     // "githubUrl": "",
-    "androidLiveUrl": "https://play.google.com/store/apps/details?id=com.castle_developments.erp",
-    "iosLiveUrl": "https://apps.apple.com/eg/app/cred-developments/id1542969305",
+    "androidLiveUrl":
+        "https://play.google.com/store/apps/details?id=com.castle_developments.erp",
+    "iosLiveUrl":
+        "https://apps.apple.com/eg/app/cred-developments/id1542969305",
     "techStack": ["Flutter", "Firebase"],
     "status": "Completed",
   },
@@ -228,7 +291,14 @@ List jsonProjects = [
     "color": "#FF3F51B5",
     // "githubUrl": "https://github.com/elkafrawyel/chatApp",
     "androidLiveUrl": "",
-    "techStack": ["Flutter", "Firebase Auth", "Cloud Firestore", "Firebase Storage", "Firebase Cloud Messaging", "GetX"],
+    "techStack": [
+      "Flutter",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Firebase Storage",
+      "Firebase Cloud Messaging",
+      "GetX",
+    ],
     "status": "Completed",
   },
   {
@@ -240,7 +310,14 @@ List jsonProjects = [
     "color": "#FF009688",
     // "githubUrl": "https://github.com/elkafrawyel/TeraStore",
     "androidLiveUrl": "",
-    "techStack": ["Flutter", "Firebase", "Dio", "GetX", "REST APIs", "Push Notifications"],
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "Dio",
+      "GetX",
+      "REST APIs",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -264,7 +341,14 @@ List jsonProjects = [
     "color": "#FF4CAF50",
     // "githubUrl": "https://github.com/elkafrawyel/cezma",
     "androidLiveUrl": "",
-    "techStack": ["Kotlin", "Android SDK", "Firebase", "Retrofit", "Room", "Push Notifications"],
+    "techStack": [
+      "Kotlin",
+      "Android SDK",
+      "Firebase",
+      "Retrofit",
+      "Room",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -276,7 +360,15 @@ List jsonProjects = [
     "color": "#FF9C27B0",
     // "githubUrl": "https://github.com/elkafrawyel/RZ",
     "androidLiveUrl": "",
-    "techStack": ["Kotlin", "Android SDK", "Firebase", "Retrofit", "Room", "Push Notifications", "Google Maps"],
+    "techStack": [
+      "Kotlin",
+      "Android SDK",
+      "Firebase",
+      "Retrofit",
+      "Room",
+      "Push Notifications",
+      "Google Maps",
+    ],
     "status": "Completed",
   },
   {
@@ -288,7 +380,14 @@ List jsonProjects = [
     "color": "#FF3F51B5",
     // "githubUrl": "https://github.com/elkafrawyel/GalaxyReciever",
     "androidLiveUrl": "",
-    "techStack": ["Kotlin", "Android TV SDK", "ExoPlayer", "DLNA/UPnP", "Firebase", "Retrofit"],
+    "techStack": [
+      "Kotlin",
+      "Android TV SDK",
+      "ExoPlayer",
+      "DLNA/UPnP",
+      "Firebase",
+      "Retrofit",
+    ],
     "status": "Completed",
   },
   {
@@ -300,7 +399,15 @@ List jsonProjects = [
     "color": "#FFFF9800",
     // "githubUrl": "https://github.com/elkafrawyel/Bubbles",
     "androidLiveUrl": "",
-    "techStack": ["Kotlin", "Android SDK", "Firebase", "Retrofit", "Room", "Google Maps", "Push Notifications"],
+    "techStack": [
+      "Kotlin",
+      "Android SDK",
+      "Firebase",
+      "Retrofit",
+      "Room",
+      "Google Maps",
+      "Push Notifications",
+    ],
     "status": "Completed",
   },
   {
@@ -312,7 +419,13 @@ List jsonProjects = [
     "color": "#FF4CAF50",
     // "githubUrl": "https://github.com/elkafrawyel/KidsTv",
     "androidLiveUrl": "",
-    "techStack": ["Kotlin", "Android SDK", "YouTube API", "Firebase", "Retrofit"],
+    "techStack": [
+      "Kotlin",
+      "Android SDK",
+      "YouTube API",
+      "Firebase",
+      "Retrofit",
+    ],
     "status": "Completed",
   },
   {
